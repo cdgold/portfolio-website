@@ -18,6 +18,20 @@ export const defaultTheme: DefaultTheme = {
       secondary: '#00C9B0',
       accent: "#FFC9C7",
       contrastText: '#000000'
+    },
+    icons: {
+      react: "#4d91ff",
+      html: "#ffc012",
+      sql: "#336791",
+      mongoDB: "#589636",
+      node: "#215732",
+      css: "#264de4",
+      python: "#ffd343",
+      java: "#fc0303",
+      express: "#808080",
+      cplusplus: "#00349c",
+      typescript: "#007acc",
+      javascript: "#F0DB4F"
     }
   },
   fonts: {
@@ -26,8 +40,8 @@ export const defaultTheme: DefaultTheme = {
     titleFonts: "'Bungee', cursive",
     bodyFonts: "'Cabin', sans-serif",
     sizes: {
-      bodySmall: ".8rem",
-      bodyMedium: "1rem",
+      bodySmall: "1rem",
+      bodyMedium: "1.3rem",
       bodyLarge: "1.8rem",
       subheading: "4rem",
       titleTiny: "2.3rem",

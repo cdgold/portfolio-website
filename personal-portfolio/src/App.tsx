@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import styled from "styled-components"
 import LandingBanner from "./LandingBanner"
 import Header from "./Header"
 import About from "./About"
 import Projects from "./Projects"
 import Contact from "./Contact"
+import { faReact, faHtml5, faNodeJs, faCss3Alt, faPython, faJava, faSquareJs } from "@fortawesome/free-brands-svg-icons"
 
 // type JSON
 // import JSON
@@ -12,6 +13,7 @@ import Contact from "./Contact"
 
 const Page = styled.div`
   overflow-x: hidden;
+  overflow-y: hidden;
 `
 
 const Gradient = styled.div`
@@ -21,15 +23,25 @@ const Gradient = styled.div`
 `
 
 function App() {
-  const [count, setCount] = useState(0)
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+
   return (
     <Page>
-      <Header />
+      <Header divRefs={{"about": aboutRef, "projects": projectsRef, "contact": contactRef}} />
       <LandingBanner />
-      <Gradient />
-      <About />
-      <Projects />
-      <Contact />
+      <Gradient/>
+      <div ref={aboutRef}>
+        <About />
+      </div>
+      <div ref={projectsRef}>
+        <button onClick={() => { aboutRef.current?.scrollIntoView({ behavior: 'auto', block: 'end' })} }></button>
+        <Projects />
+      </div>
+      <div ref={contactRef}>
+        <Contact />
+      </div>
     </Page>
   )
 }
