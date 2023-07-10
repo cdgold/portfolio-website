@@ -6,9 +6,10 @@ import About from "./About"
 import Projects from "./Projects"
 import Contact from "./Contact"
 
-// type JSON
-// import JSON
-// put project type as component prop
+// images in projects
+// remove header pre-scroll
+// contact page
+// coloring (both documentation and add more)
 
 const Page = styled.div`
   overflow-x: hidden;

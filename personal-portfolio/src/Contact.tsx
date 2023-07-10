@@ -17,6 +17,7 @@ const Title = styled.div`
   letter-spacing: -1.5px;
   margin-bottom: 1rem;
   user-select: none;
+  text-align: center;
 `
 
 const EmailLink = styled.span`

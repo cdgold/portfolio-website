@@ -8,13 +8,13 @@ export const defaultTheme: DefaultTheme = {
     main: {
       background: "#BFEAFF",
       primary: "rgb(255, 255, 0, 1)",
-      secondary: "rgb(255, 255, 0, .3)",
+      secondary: "rgb(255, 255, 0, 1)",
       accent: "#FCFCD4",
       contrastText: '#000000'
     },
     secondary: {
-      background: "#ffffff",
-      primary: '#9FE7FF',
+      background: "#fffffa",
+      primary: '#BFEAFF',
       secondary: '#00C9B0',
       accent: "#FFC9C7",
       contrastText: '#000000',

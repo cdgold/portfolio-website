@@ -25,19 +25,19 @@ const Title = styled.div`
   line-height: 1;
   letter-spacing: -1.5px;
   margin-bottom: 1rem;
+  text-align: center;
 `
 
 const ListsContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 33% 34% 33%;
-  margin-left: 1rem;
 `
 
 const ListContainer = styled.div`
   margin-top: 0px;
   margin-bottom: 1.5rem;
-
+  text-align: center;
 `
 
 const ListHeader = styled.div`
@@ -45,6 +45,7 @@ const ListHeader = styled.div`
   font-family: ${props => props.theme.fonts.titleFonts};
   margin: 0;
   line-height: 1;
+  text-align: center;
 `
 
 const ListSubeader = styled(ListHeader)`
@@ -63,10 +64,10 @@ const ListElement = styled.li`
   font-family: ${props => props.theme.fonts.bodyFonts};
   font-size: ${props => props.theme.fonts.sizes.bodyLarge};
   display: grid;
-  grid-template-columns: 40px 1fr;
+  margin-bottom: 1rem;
 `
 
-const ListElementIcon = styled.div`
+const ListElementIcon = styled.span`
   place-self: center;
   height: 90%;
 `
@@ -74,6 +75,7 @@ const ListElementIcon = styled.div`
 const BlurbText = styled.div`
   font-family: ${props => props.theme.fonts.bodyFonts};
   font-size: ${props => props.theme.fonts.sizes.bodyMedium};
+  text-align: center;
 `
 
 const About = () => {
