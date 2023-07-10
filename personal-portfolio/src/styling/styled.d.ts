@@ -1,28 +1,13 @@
 // styled.d.ts
 import 'styled-components';
 
-
-export enum iconTypes { 
-  React = "react",
-  Html = "html",
-  Sql = "sql",
-  Mongodb = "mongodb",
-  Node = "node",
-  Css = "css",
-  Python = "python",
-  Java = "java",
-  Express = "express",
-  CPlusPlus = "cplusplus",
-  Typescript = "typescript",
-  Javascript = "javascript"
-}
-
 interface IPalette {
   background: string,
   primary: string,
   secondary: string,
   accent: string,
   contrastText: string,
+  linkText?: string
 }
 
 
@@ -66,6 +51,7 @@ declare module 'styled-components' {
         titleMedium: string,
         titleLarge: string
       }
-    }
+    },
+    contentWidthPercent: string;
   }
 }

@@ -7,8 +7,8 @@ export const defaultTheme: DefaultTheme = {
     },
     main: {
       background: "#BFEAFF",
-      primary: '#009BF9',
-      secondary: '#EFFBFF',
+      primary: "rgb(255, 255, 0, 1)",
+      secondary: "rgb(255, 255, 0, .3)",
       accent: "#FCFCD4",
       contrastText: '#000000'
     },
@@ -17,7 +17,8 @@ export const defaultTheme: DefaultTheme = {
       primary: '#9FE7FF',
       secondary: '#00C9B0',
       accent: "#FFC9C7",
-      contrastText: '#000000'
+      contrastText: '#000000',
+      linkText: ""
     },
     icons: {
       react: "#4d91ff",
@@ -35,9 +36,9 @@ export const defaultTheme: DefaultTheme = {
     }
   },
   fonts: {
-    headingFonts: "'Bungee Shade', cursive",
-    subheadingFonts: "'Bungee Inline', cursive",
-    titleFonts: "'Bungee', cursive",
+    headingFonts: "'Bungee Shade', sans-serif",
+    subheadingFonts: "'Bungee Inline', sans-serif",
+    titleFonts: "'Bungee', sans-serif",
     bodyFonts: "'Cabin', sans-serif",
     sizes: {
       bodySmall: "1rem",
@@ -49,7 +50,8 @@ export const defaultTheme: DefaultTheme = {
       titleMedium: "3.0rem",
       titleLarge: "3.3rem"
     }
-  }
+  },
+  contentWidthPercent: "90%",
 }
 
 export default defaultTheme

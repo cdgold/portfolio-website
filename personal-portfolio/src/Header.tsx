@@ -1,9 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-// https://www.kindacode.com/article/react-get-the-position-x-y-of-an-element/
-
-// SCROLL BETTER!!
+const SCROLL_ABOVE_DIV_PX = 60
 
 const NavBar = styled.nav`
   position: fixed;
@@ -20,6 +18,12 @@ const NavBar = styled.nav`
   border-style: solid;
   border-width: 0 0 1px 0;
   border-color: ${props => props.theme.palette.common.black};
+  z-index: 100;
+
+
+  &: hover{
+    cursor: pointer;
+  }
 `
 
 const NavButton = styled.button`
@@ -28,9 +32,11 @@ const NavButton = styled.button`
   font-size: 1.25rem;
   height: min-content;
   margin: 0 .5rem;
+  transition: text-shadow .2s;
 
   &: hover {
     cursor: pointer;
+    text-shadow: -3px 3px 0px ${props => props.theme.palette.main.primary};
   }
 `
 
@@ -40,6 +46,12 @@ const Name = styled.div`
   font-size: 1.25rem;
   height: min-content;
   margin: 0 1.5rem;
+  transition: text-shadow .2s;
+
+  &: hover {
+    cursor: pointer;
+    text-shadow: -3px 3px 0px ${props => props.theme.palette.main.primary};
+  }
 `
 
 interface HeaderProps {
@@ -53,17 +65,31 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
  
   return(
-    <NavBar>
-      <Name>
+    <NavBar >
+      <Name onClick={() => {
+        window.scrollTo({ 
+          top: 0, left: 0, behavior: 'smooth' })} } >
         CHRIS
       </Name>
-      <NavButton onClick={() => { { props.divRefs.about.current?.scrollIntoView({ behavior: 'smooth', block: 'end',  })} } } >
+      <NavButton onClick={() => { { 
+        window.scrollTo({ 
+          top: (props.divRefs.about.current?.offsetTop 
+            ? props.divRefs.about.current?.offsetTop - SCROLL_ABOVE_DIV_PX 
+            : undefined), left: 0, behavior: 'smooth' })} } } >
         About
       </NavButton>
-      <NavButton onClick={() => { { props.divRefs.projects.current?.scrollIntoView({ behavior: 'smooth', block: 'end',  })} } } >
+      <NavButton onClick={() => {{
+        window.scrollTo({ 
+          top: (props.divRefs.projects.current?.offsetTop 
+            ? props.divRefs.projects.current?.offsetTop - SCROLL_ABOVE_DIV_PX 
+            : undefined), left: 0, behavior: 'smooth' })} } } > 
         Projects
       </NavButton>
-      <NavButton onClick={() => { { props.divRefs.contact.current?.scrollIntoView({ behavior: 'smooth', block: 'end',  })} } }>
+      <NavButton onClick={() => {{
+        window.scrollTo({ 
+          top: (props.divRefs.contact.current?.offsetTop 
+            ? props.divRefs.contact.current?.offsetTop - SCROLL_ABOVE_DIV_PX 
+            : undefined), left: 0, behavior: 'smooth' })} } } >
         Contact
       </NavButton>
     </NavBar>

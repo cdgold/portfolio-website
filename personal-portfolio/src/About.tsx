@@ -3,19 +3,20 @@ import styled, { useTheme } from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faReact, faHtml5, faNodeJs, faCss3Alt, faPython, faJava, faSquareJs } from "@fortawesome/free-brands-svg-icons"
 import { faLeaf, faDatabase, faChessPawn, faGamepad } from "@fortawesome/free-solid-svg-icons"
-import { ExpressIcon, CPlusPlusIcon } from "./styling/resuable/TechIcons"
-
+import { ExpressIcon, CPlusPlusIcon } from "./styling/reusable/TechIcons"
+import PostgresSVG from "./assets/postgresql-icon.svg"
+import TypescriptSVG from "./assets/Typescript_logo.svg"
 
 const Section = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: ${props => props.theme.palette.secondary.background};
   display: flex;
   justify-content: center;
 `
 
 const Content = styled.div`
-  width: 90%;
+  width: ${props => props.theme.contentWidthPercent};
 `
 
 const Title = styled.div`
@@ -65,8 +66,9 @@ const ListElement = styled.li`
   grid-template-columns: 40px 1fr;
 `
 
-const ListElementIcon = styled.span`
+const ListElementIcon = styled.div`
   place-self: center;
+  height: 90%;
 `
 
 const BlurbText = styled.div`
@@ -106,7 +108,7 @@ const About = () => {
               </ListElement>
               <ListElement>
                 <ListElementIcon>
-                  <FontAwesomeIcon icon={faCss3Alt} color={theme.palette.icons.html} /> 
+                  <FontAwesomeIcon icon={faCss3Alt} color={theme.palette.icons.css} /> 
                 </ListElementIcon>
                 {"CSS"}
               </ListElement>
@@ -132,9 +134,9 @@ const About = () => {
                 </ListElement>
                 <ListElement>
                   <ListElementIcon>
-                    <FontAwesomeIcon icon={faDatabase} color={theme.palette.icons.sql} />
+                    <img style={{height: "100%"}} src={PostgresSVG} />
                   </ListElementIcon>
-                  {" SQL/PostgreSQL"}
+                  {" PostgreSQL"}
                 </ListElement>
                 <ListElement>
                   <ListElementIcon>
@@ -165,7 +167,7 @@ const About = () => {
                 </ListElement>
                 <ListElement>
                   <ListElementIcon>
-                    <FontAwesomeIcon icon={faSquareJs}  color={theme.palette.icons.typescript} /> 
+                    <img style={{height: theme.fonts.sizes.bodyLarge}} src={TypescriptSVG} />
                   </ListElementIcon>
                   {" Typescript/Javascript"}
                 </ListElement>

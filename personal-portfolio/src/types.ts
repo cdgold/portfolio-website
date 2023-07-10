@@ -1,4 +1,4 @@
-export enum iconTypes { 
+export enum iconType { 
     React = "react",
     Html = "html",
     Sql = "sql",
@@ -13,6 +13,8 @@ export enum iconTypes {
     Javascript = "javascript"
   }
 
+type TechIcon = "react" | "styled-components" | "node" | "express" | "mongodb" | "postgres" | "html" | "css"
+
 export interface Project {
     title: string;
     titleImg?: string;
@@ -20,5 +22,5 @@ export interface Project {
     codeUrl?: string;
     bullets?: Array<string>;
     url?: string;
-    icons: iconTypes;
+    tech: Array<TechIcon>;
 }

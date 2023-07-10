@@ -5,7 +5,6 @@ import Header from "./Header"
 import About from "./About"
 import Projects from "./Projects"
 import Contact from "./Contact"
-import { faReact, faHtml5, faNodeJs, faCss3Alt, faPython, faJava, faSquareJs } from "@fortawesome/free-brands-svg-icons"
 
 // type JSON
 // import JSON
@@ -22,6 +21,10 @@ const Gradient = styled.div`
   background-image: linear-gradient(${props => props.theme.palette.main.background}, ${props => props.theme.palette.secondary.background});
 `
 
+const Content = styled.div`
+  width: ${props => props.theme.contentWidthPercent};
+`
+
 function App() {
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -36,7 +39,6 @@ function App() {
         <About />
       </div>
       <div ref={projectsRef}>
-        <button onClick={() => { aboutRef.current?.scrollIntoView({ behavior: 'auto', block: 'end' })} }></button>
         <Projects />
       </div>
       <div ref={contactRef}>
