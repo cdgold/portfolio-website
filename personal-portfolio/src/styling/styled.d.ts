@@ -53,5 +53,6 @@ declare module 'styled-components' {
       }
     },
     contentWidthPercent: string;
+    footerHeight: string;
   }
 }

@@ -69,13 +69,17 @@ const GalleryImage = styled.img`
 width: 100%;
 place-self: center;
 display: inline-block;
-border-radius: 5px;
+border-radius: 10px;
 `
 
 const ProjectButton = styled.span` 
   border: 2px solid black;
+  background-color: ${props => props.theme.palette.secondary.secondary};
   border-radius: 5px;
   padding: 5px;
+  line-height: 1;
+  font-family: ${props => props.theme.fonts.titleFonts};
+  font-size: ${props => props.theme.fonts.sizes.bodyLarge};
 
   transition: all .2s;
 
@@ -93,6 +97,7 @@ gap: 1rem;
 margin-bottom: 0;
 align-content: center;
 justify-content: center;
+
 `
 
 interface ImageGalleryProps {
@@ -132,6 +137,7 @@ const Section = styled.div`
   background-color: ${props => props.theme.palette.secondary.background};
   display: flex;
   justify-content: center;
+  padding-bottom: 3rem;
 `
 
 
@@ -154,24 +160,7 @@ const Title = styled.div`
   margin-bottom: 1rem;
 `
 
-const ProjectContainer = styled.div`
-  border: 2px solid black;
-  background-color: ${props => props.theme.palette.secondary.primary};
-  border-radius: 10px;
-  margin-bottom: 1rem;  
-  min-width: 10rem;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,.2);
-`
-
-const LongProjectContainer = styled(ProjectContainer)`
-display: grid;
-grid-gap: 5%;
-grid-template-columns: 55% 40%;
-`
-
 const ProjectTitle = styled.div`
-color: black;
 font-size: ${TITLE_SIZE};
 font-family: ${props => props.theme.fonts.headingFonts};
 line-height: 1;
@@ -190,8 +179,10 @@ margin-bottom: .25rem;
 
 const ProjectBullets = styled.ul`
 list-style-type: none;
+margin-left: 0;
   margin-top: 0;
   margin-bottom: 0;
+  padding: 0;
   font-family: ${props => props.theme.fonts.bodyFonts};
   font-size: ${props => props.theme.fonts.sizes.bodyMedium};
   color: black;
@@ -221,8 +212,40 @@ const Links = styled(ProjectSubtitle)`
   margin-bottom: 1rem;
 `
 
+interface HighlightProps{
+  tiltDegree?: number;
+}
+
+const HighlightContainer = styled.span<HighlightProps>`
+  position: relative;
+  display: inline-block;
+
+  &:before {
+    content: " ";
+    display: block;
+    height: 80%;
+    width: 100%;
+    margin-left: -3px;
+    margin-right: -3px;
+    position: absolute;
+    background: ${props => props.theme.palette.secondary.secondary};
+    transform: rotate(${p => (p.tiltDegree) ? p.tiltDegree : 0}deg);
+    top: -1px;
+    left: -1px;
+    border-radius: 20% 10% 10% 20%;
+    z-index: 0;
+    padding: 10px 3px 3px 10px;
+  }
+
+`
+
+const Highlight = styled.span`
+  position: relative;
+`
+
 interface ProjectTextProps {
   project: Project;
+  titleTilt?: number;
 }
 
 const ProjectText = (props: ProjectTextProps): JSX.Element => {
@@ -232,7 +255,7 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
   return(
     <div style={{ textAlign: "center" }}>
       <ProjectTitle>
-        {project.title}
+        <HighlightContainer tiltDegree={props.titleTilt}> <Highlight > {project.title} </Highlight> </HighlightContainer>
       </ProjectTitle>
       <ProjectSubtitle>
         {project.subtitle}
@@ -291,6 +314,22 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
   )
 }
 
+const ProjectContainer = styled.div`
+  border: 2px solid black;
+  background-color: ${props => props.theme.palette.secondary.primary};
+  border-radius: 10px;
+  margin-bottom: 1rem;  
+  min-width: 10rem;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+`
+
+const LongProjectContainer = styled(ProjectContainer)`
+display: grid;
+grid-gap: 5%;
+grid-template-columns: 55% 40%;
+`
+
 const ShortProjectContainer = styled(ProjectContainer)`
   display: inline-block;
   width: min-content(15ch);
@@ -298,9 +337,17 @@ const ShortProjectContainer = styled(ProjectContainer)`
   align-self: center;
 `
 
+const FlippedProjectContainer = styled(ProjectContainer)`
+display: grid;
+grid-gap: 5%;
+grid-template-columns: 40% 55%;
+`
+
 interface ProjectProps {
   project: Project;
   short?: boolean;
+  flip?: boolean;
+  titleTilt?: number;
 }
 
 const ShowProject = (props: ProjectProps): JSX.Element => {
@@ -310,14 +357,27 @@ const ShowProject = (props: ProjectProps): JSX.Element => {
   if (props.short === true) {
     return(
       <ShortProjectContainer>
-        <ProjectText project={props.project} />
+        <ProjectText project={props.project} titleTilt={props.titleTilt}/>
       </ShortProjectContainer>
+    )
+  }
+
+  if (props.flip === true) {
+    return(
+      <FlippedProjectContainer>
+        <div style={{ display: "flex" }}>
+          {project.images ?
+            <ImageGallery images={project.images} projectName={project.title} />
+            : null}
+        </div>
+        <ProjectText project={props.project} titleTilt={props.titleTilt} />
+      </FlippedProjectContainer>
     )
   }
 
   return(
     <LongProjectContainer>
-      <ProjectText project={props.project} />
+      <ProjectText project={props.project} titleTilt={props.titleTilt}/>
       <div style={{ display: "flex" }}>
         {project.images ?
           <ImageGallery images={project.images} projectName={project.title} />
@@ -334,10 +394,10 @@ const Projects = () => {
         <Title>
         Projects
         </Title>
-        <ShowProject project={ZicProject} />
-        <ShowProject project={NickGiotisProject} />
+        <ShowProject project={ZicProject} titleTilt={3}/>
+        <ShowProject project={NickGiotisProject} flip={true} titleTilt={-2} />
         And, of course: <br></br>
-        <ShowProject project={thisSiteProject} short={true} />
+        <ShowProject project={thisSiteProject} short={true} titleTilt={2}  />
       </Content>
     </Section>
   )

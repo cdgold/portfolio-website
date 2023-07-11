@@ -13,9 +13,9 @@ export const defaultTheme: DefaultTheme = {
       contrastText: '#000000'
     },
     secondary: {
-      background: "#fffffa",
+      background: "#fff6d9",
       primary: '#BFEAFF',
-      secondary: '#00C9B0',
+      secondary: "#ffff66",
       accent: "#FFC9C7",
       contrastText: '#000000',
       linkText: ""
@@ -51,7 +51,8 @@ export const defaultTheme: DefaultTheme = {
       titleLarge: "3.3rem"
     }
   },
-  contentWidthPercent: "90%",
+  contentWidthPercent: "80%",
+  footerHeight: "3rem",
 }
 
 export default defaultTheme

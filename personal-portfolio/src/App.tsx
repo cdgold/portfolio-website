@@ -5,15 +5,20 @@ import Header from "./Header"
 import About from "./About"
 import Projects from "./Projects"
 import Contact from "./Contact"
+import Footer from "./Footer"
 
-// images in projects
 // remove header pre-scroll
-// contact page
 // coloring (both documentation and add more)
 
+const PageContainer = styled.div`
+position: relative;
+margin-left: 0;
+overflow-x: hidden;
+min-height: 100vh;
+`
+
 const Page = styled.div`
-  overflow-x: hidden;
-  overflow-y: hidden;
+  padding-bottom: ${props => props.theme.footerHeight};
 `
 
 const Gradient = styled.div`
@@ -32,20 +37,23 @@ function App() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Page>
-      <Header divRefs={{"about": aboutRef, "projects": projectsRef, "contact": contactRef}} />
-      <LandingBanner />
-      <Gradient/>
-      <div ref={aboutRef}>
-        <About />
-      </div>
-      <div ref={projectsRef}>
-        <Projects />
-      </div>
-      <div ref={contactRef}>
-        <Contact />
-      </div>
-    </Page>
+    <PageContainer>
+      <Page>
+        <Header divRefs={{"about": aboutRef, "projects": projectsRef, "contact": contactRef}} />
+        <LandingBanner />
+        <Gradient/>
+        <div ref={aboutRef}>
+          <About />
+        </div>
+        <div ref={projectsRef}>
+          <Projects />
+        </div>
+        <div ref={contactRef}>
+          <Contact />
+        </div>
+      </Page>
+      <Footer />
+    </PageContainer>
   )
 }
 
