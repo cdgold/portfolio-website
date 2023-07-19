@@ -23,4 +23,5 @@ export interface Project {
     bullets?: Array<string>;
     url?: string;
     tech: Array<TechIcon>;
+    images?: Array<string>;
 }
