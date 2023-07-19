@@ -85,7 +85,8 @@ const ProjectButton = styled.span`
 
   &: hover {
     cursor: pointer;
-    box-shadow: -3px 3px 0px ${props => props.theme.palette.main.primary};
+    transform: translate3d(2px, -2px, 0);
+    box-shadow: -3px 3px 0px ${props => props.theme.palette.secondary.accent};
   }
 `
 

@@ -13,10 +13,10 @@ export const defaultTheme: DefaultTheme = {
       contrastText: '#000000'
     },
     secondary: {
-      background: "#fff6d9",
+      background: "#fffff2",
       primary: '#BFEAFF',
       secondary: "#ffff66",
-      accent: "#FFC9C7",
+      accent: "#2962ff",
       contrastText: '#000000',
       linkText: ""
     },

@@ -1,10 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 
-const ExpressSpan = styled.span`
+const ExpressSpan = styled.div`
   color: ${props => props.theme.palette.icons.express};
   font-family: ${props => props.theme.fonts.bodyFonts};
   user-select: none;
+  place-self: center;
 `
 
 const ExpressIcon = () => {
@@ -15,7 +16,7 @@ const ExpressIcon = () => {
   )
 }
 
-const CPlusPlusSpan = styled.span`
+const CPlusPlusSpan = styled.div`
 color: ${props => props.theme.palette.icons.cplusplus};
 font-family: sans-serif;
 font-weight: 900;

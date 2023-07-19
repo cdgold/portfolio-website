@@ -51,7 +51,7 @@ const ListHeader = styled.div`
 const ListSubeader = styled(ListHeader)`
   font-size: ${props => props.theme.fonts.sizes.titleTiny};
   font-family: ${props => props.theme.fonts.bodyFonts};
-  font-style: italic;
+  font-weight: 700;
 `
 
 const List = styled.ul`
@@ -62,12 +62,17 @@ margin: 0;
 
 const ListElement = styled.li`
   font-family: ${props => props.theme.fonts.bodyFonts};
-  font-size: ${props => props.theme.fonts.sizes.bodyLarge};
+  font-size: ${props => props.theme.fonts.sizes.bodyMedium};
   display: grid;
-  margin-bottom: 1rem;
+  grid-template-columns: max-content max-content;
+  column-gap: .5rem;
+  margin-bottom: .25rem;
+  justify-content: center;
+  align-items: center;
 `
 
 const ListElementIcon = styled.span`
+font-size: ${props => props.theme.fonts.sizes.titleSmall};
   place-self: center;
   height: 90%;
 `
@@ -93,7 +98,7 @@ const About = () => {
         <ListsContainer>
           <ListContainer>
             <ListSubeader>
-            Frontend
+              Frontend
             </ListSubeader>
             <List>
               <ListElement>
@@ -169,7 +174,7 @@ const About = () => {
                 </ListElement>
                 <ListElement>
                   <ListElementIcon>
-                    <img style={{height: theme.fonts.sizes.bodyLarge}} src={TypescriptSVG} />
+                    <img style={{height: theme.fonts.sizes.titleTiny}} src={TypescriptSVG} />
                   </ListElementIcon>
                   {" Typescript/Javascript"}
                 </ListElement>

@@ -7,8 +7,13 @@ import Projects from "./Projects"
 import Contact from "./Contact"
 import Footer from "./Footer"
 
+// responsiveness
+// loading page
+// landing page buttons?
 // remove header pre-scroll
-// coloring (both documentation and add more)
+// coloring (add more)
+// onload
+// font-face-observer (https://stackoverflow.com/questions/66879446/react-how-to-check-if-a-specific-font-face-has-been-loaded)
 
 const PageContainer = styled.div`
 position: relative;
