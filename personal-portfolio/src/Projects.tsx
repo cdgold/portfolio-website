@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faReact, faNodeJs, faHtml5, faCss3Alt } from "@fortawesome/free-brands-svg-icons"
 import { faArrowUpRightFromSquare, faLeaf, faGlobe } from "@fortawesome/free-solid-svg-icons"
 import { ExpressIcon } from "./styling/reusable/TechIcons"
+import { Highlight } from "./styling/reusable/Highlight"
 import PostgresSVG from "./assets/postgresql-icon.svg"
 import ZicAlbum from "./assets/ZicCaptures/album_page.jpg"
 import ZicFollowers from "./assets/ZicCaptures/followers_page.jpg"
@@ -213,37 +214,6 @@ const Links = styled(ProjectSubtitle)`
   margin-bottom: 1rem;
 `
 
-interface HighlightProps{
-  tiltDegree?: number;
-}
-
-const HighlightContainer = styled.span<HighlightProps>`
-  position: relative;
-  display: inline-block;
-
-  &:before {
-    content: " ";
-    display: block;
-    height: 80%;
-    width: 100%;
-    margin-left: -3px;
-    margin-right: -3px;
-    position: absolute;
-    background: ${props => props.theme.palette.secondary.secondary};
-    transform: rotate(${p => (p.tiltDegree) ? p.tiltDegree : 0}deg);
-    top: -1px;
-    left: -1px;
-    border-radius: 20% 10% 10% 20%;
-    z-index: 0;
-    padding: 10px 3px 3px 10px;
-  }
-
-`
-
-const Highlight = styled.span`
-  position: relative;
-`
-
 interface ProjectTextProps {
   project: Project;
   titleTilt?: number;
@@ -256,7 +226,7 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
   return(
     <div style={{ textAlign: "center" }}>
       <ProjectTitle>
-        <HighlightContainer tiltDegree={props.titleTilt}> <Highlight > {project.title} </Highlight> </HighlightContainer>
+        <Highlight tiltDegree={props.titleTilt}> {project.title} </Highlight>
       </ProjectTitle>
       <ProjectSubtitle>
         {project.subtitle}
@@ -316,13 +286,11 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
 }
 
 const ProjectContainer = styled.div`
-  border: 2px solid black;
   background-color: ${props => props.theme.palette.secondary.primary};
   border-radius: 10px;
   margin-bottom: 1rem;  
   min-width: 10rem;
   padding: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,.2);
 `
 
 const LongProjectContainer = styled(ProjectContainer)`

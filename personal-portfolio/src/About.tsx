@@ -4,12 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faReact, faHtml5, faNodeJs, faCss3Alt, faPython, faJava, faSquareJs } from "@fortawesome/free-brands-svg-icons"
 import { faLeaf, faDatabase, faChessPawn, faGamepad } from "@fortawesome/free-solid-svg-icons"
 import { ExpressIcon, CPlusPlusIcon } from "./styling/reusable/TechIcons"
+import { Highlight } from "./styling/reusable/Highlight"
 import PostgresSVG from "./assets/postgresql-icon.svg"
 import TypescriptSVG from "./assets/Typescript_logo.svg"
+import meStanding from "./assets/me_standing_cropped.jpg"
 
 const Section = styled.div`
   width: 100vw;
   min-height: 100vh;
+  padding-bottom: 1rem;
   background-color: ${props => props.theme.palette.secondary.background};
   display: flex;
   justify-content: center;
@@ -28,16 +31,23 @@ const Title = styled.div`
   text-align: center;
 `
 
-const ListsContainer = styled.div`
+const AboutGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 33% 34% 33%;
+  grid-template-columns: 30% 30% 30%;
+  column-gap: 5%;
+  grid-template-rows: 20rem 1fr;
 `
 
 const ListContainer = styled.div`
   margin-top: 0px;
   margin-bottom: 1.5rem;
   text-align: center;
+  border: 0px solid black;
+background-color: ${props => props.theme.palette.secondary.primary};
+border-radius: 10px;
+margin-bottom: 1rem;  
+padding: 10px;
 `
 
 const ListHeader = styled.div`
@@ -50,8 +60,7 @@ const ListHeader = styled.div`
 
 const ListSubeader = styled(ListHeader)`
   font-size: ${props => props.theme.fonts.sizes.titleTiny};
-  font-family: ${props => props.theme.fonts.bodyFonts};
-  font-weight: 700;
+  font-family: ${props => props.theme.fonts.titleFonts};
 `
 
 const List = styled.ul`
@@ -81,6 +90,17 @@ const BlurbText = styled.div`
   font-family: ${props => props.theme.fonts.bodyFonts};
   font-size: ${props => props.theme.fonts.sizes.bodyMedium};
   text-align: center;
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  padding: 10px;
+  font-weight: 500;
+`
+
+const MeImg = styled.img`
+border-radius: 10%;
+margin-bottom: 1rem;  
+width: 90%;
+border: 0px solid black;
 `
 
 const About = () => {
@@ -92,13 +112,13 @@ const About = () => {
         <Title>
         About Me
         </Title>
-        <ListHeader>
-            Tech Stack
-        </ListHeader>
-        <ListsContainer>
-          <ListContainer>
+        <AboutGrid>
+          <div style={{gridColumn: 1, gridRow: 1, height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <MeImg src={meStanding} alt={"Chris Gold standing"} />
+          </div>
+          <ListContainer style={{ gridColumn: 2, gridRow: 1 }}>
             <ListSubeader>
-              Frontend
+              <Highlight tiltDegree={-1}> Frontend </Highlight>
             </ListSubeader>
             <List>
               <ListElement>
@@ -127,75 +147,63 @@ const About = () => {
               </ListElement>
             </List>
           </ListContainer>
-          <div>
-            <ListContainer>
-              <ListSubeader>
-            Backend
-              </ListSubeader>
-              <List>
-                <ListElement>
-                  <ListElementIcon>
-                    <FontAwesomeIcon icon={faNodeJs} color={theme.palette.icons.node}  />
-                  </ListElementIcon>
-                  {" Node.js"}
-                </ListElement>
-                <ListElement>
-                  <ListElementIcon>
-                    <img style={{height: "100%"}} src={PostgresSVG} />
-                  </ListElementIcon>
-                  {" PostgreSQL"}
-                </ListElement>
-                <ListElement>
-                  <ListElementIcon>
-                    <FontAwesomeIcon icon={faLeaf} color={theme.palette.icons.mongoDB} /> 
-                  </ListElementIcon>
-                  {" MongoDB"}
-                </ListElement>
-                <ListElement>
-                  <ListElementIcon>
-                    <ExpressIcon />
-                  </ListElementIcon>
-                  {" Express.js"}
-                </ListElement>
-              </List>
-            </ListContainer>
-          </div>
-          <div>
-            <ListContainer>
-              <ListSubeader>
-            Languages
-              </ListSubeader>
-              <List>
-                <ListElement>
-                  <ListElementIcon>
-                    <FontAwesomeIcon icon={faJava} color={theme.palette.icons.java} /> 
-                  </ListElementIcon>
-                  {" Java"}
-                </ListElement>
-                <ListElement>
-                  <ListElementIcon>
-                    <img style={{height: theme.fonts.sizes.titleTiny}} src={TypescriptSVG} />
-                  </ListElementIcon>
-                  {" Typescript/Javascript"}
-                </ListElement>
-                <ListElement>
-                  <ListElementIcon>
-                    <FontAwesomeIcon icon={faPython} color={theme.palette.icons.python} /> 
-                  </ListElementIcon>
-                  {" Python"}
-                </ListElement>
-                <ListElement>
-                  <ListElementIcon>
-                    <CPlusPlusIcon />
-                  </ListElementIcon>
-                  {" C++"}
-                </ListElement>
-              </List>
-            </ListContainer>
-          </div>
-        </ListsContainer>
-        <BlurbText>
-          {`Hi! I'm Chris, a full stack developer living in D.C. 
+          <ListContainer style={{ gridColumn: 3, gridRow: "1 / span 2" }}>
+            <ListSubeader>
+              <Highlight tiltDegree={1}> Backend </Highlight>
+            </ListSubeader>
+            <List>
+              <ListElement>
+                <ListElementIcon>
+                  <FontAwesomeIcon icon={faNodeJs} color={theme.palette.icons.node}  />
+                </ListElementIcon>
+                {" Node.js"}
+              </ListElement>
+              <ListElement>
+                <ListElementIcon>
+                  <img style={{height: "100%"}} src={PostgresSVG} />
+                </ListElementIcon>
+                {" PostgreSQL"}
+              </ListElement>
+              <ListElement>
+                <ListElementIcon>
+                  <FontAwesomeIcon icon={faLeaf} color={theme.palette.icons.mongoDB} /> 
+                </ListElementIcon>
+                {" MongoDB"}
+              </ListElement>
+              <ListElement>
+                <ListElementIcon>
+                  <ExpressIcon />
+                </ListElementIcon>
+                {" Express.js"}
+              </ListElement>
+              <ListElement>
+                <ListElementIcon>
+                  <FontAwesomeIcon icon={faJava} color={theme.palette.icons.java} /> 
+                </ListElementIcon>
+                {" Java"}
+              </ListElement>
+              <ListElement>
+                <ListElementIcon>
+                  <img style={{height: theme.fonts.sizes.titleTiny}} src={TypescriptSVG} />
+                </ListElementIcon>
+                {" Typescript/Javascript"}
+              </ListElement>
+              <ListElement>
+                <ListElementIcon>
+                  <FontAwesomeIcon icon={faPython} color={theme.palette.icons.python} /> 
+                </ListElementIcon>
+                {" Python"}
+              </ListElement>
+              <ListElement>
+                <ListElementIcon>
+                  <CPlusPlusIcon />
+                </ListElementIcon>
+                {" C++"}
+              </ListElement>
+            </List>
+          </ListContainer>
+          <BlurbText>
+            {`Hi! I'm Chris, a full stack developer living in D.C. 
           What sets me apart as a developer my attention to detail, complete dedication to every project I work on, 
           and commitment to learning more about software development everyday.
           I also have years of experience in improv comedy, which allow me to think on my feet and work well with a team, and a
@@ -203,7 +211,8 @@ const About = () => {
           When I'm not coding, I enjoy watching (and occasionally performing!) stand-up, getting burgers with my girlfriend, 
           and playing indie games.
         `}
-        </BlurbText>
+          </BlurbText>
+        </AboutGrid>
       </Content>
     </Section>
   )            

@@ -2,6 +2,9 @@ import React from "react"
 import styled, { keyframes } from "styled-components"
 import sunPng from "./assets/sun.png"
 
+const FULL_DESKTOP_CUTOFF = "1250px"
+const RAY_RADIUS_PX = 300
+
 const lift = keyframes`
   0% {
     transform: translate3d(0, 0, 0);
@@ -16,9 +19,51 @@ const lift = keyframes`
   }
 `
 
-const spin = keyframes`
+const spinAround = keyframes`
+  0% {
+    transform: rotate(0deg)
+  }
   100% {
-    transform: rotate(360deg)
+    transform: rotate(360deg);
+  }
+`
+
+const growLetterSpacing = keyframes`
+  0% {
+    letter-spacing: 0rem;
+  }
+  50% {
+    letter-spacing: .15rem;
+  }
+  100% {
+    letter-spacing: 0rem;
+  }
+`
+
+const shimmer = keyframes`
+  0% {
+    color: ${props => props.theme.palette.main.primary};
+  }
+  15% {
+    color: #ffffde;
+  }
+  30% {
+    color: yellow;
+  }
+  100% {
+    color: ${props => props.theme.palette.main.primary};
+  }
+`
+
+const DisplayOnCompact = styled.span`
+  @media (min-width: ${FULL_DESKTOP_CUTOFF}) {
+    display: none;
+  }
+`
+
+const DisplayOnDesktop = styled.span`
+  @media (max-width: ${FULL_DESKTOP_CUTOFF}) {
+    display: none;
   }
 `
 
@@ -27,8 +72,8 @@ const Page = styled.div`
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  grid-template-columns: 43% 57%;
+  grid-template-rows: 40% 60%;
 `
 
 const NameContainer = styled.div`
@@ -40,7 +85,7 @@ justify-self: end;
 
 const Name = styled.div`
   font-family: ${props => props.theme.fonts.headingFonts};
-  font-size: 80px;
+  font-size: 75px;
   line-height: 100%;
   margin-bottom: 10px;
   text-shadow: -5px 4px 2px ${props => props.theme.palette.main.primary};
@@ -100,20 +145,95 @@ animation-iteration-count: 1;
   }
 `
 
-const SunImg = styled.img`
+//  animation: ${spin} 20s linear infinite;
+
+const SunImg = styled.div`
+position: absolute;
+top: 50%;
+left: 50%;
+translate: -50% -50%;
+height: 250px;
+width: 250px;
+background-color: ${props => props.theme.palette.main.primary};
+border-radius: 50%;
+`
+
+const SunContainer = styled.div`
+  width: 100%;
+  height: 100%;
   grid-row: 1;
   grid-column: 2;
-  place-self: center;
-  width: 300px;
-  animation: ${spin} 20s linear infinite;
-  filter: opacity(0.5) drop-shadow(0, 0, 0, blue);
+  display: grid;
+  justify-content: center;
+  position: relative;
+  left: 20%;
+  top: -20%;
+`
+// ${props => props.theme.palette.main.primary}
+const RayWrapper = styled.div`
+  position: absolute;
+  inset: 0;
+  animation-fill-mode: forwards;
+  animation: ${spinAround} 120s infinite linear;
+`
+
+
+// 
+
+//
+
+interface RayProps {
+  rayNum: number;
+}
+
+const SunRay = styled.div<RayProps>`
+color: ${props => props.theme.palette.main.primary};
+opacity: 85%;
+letter-spacing: 15px;
+direction: rtl;
+width: 80px;
+  font-family: ${props => props.theme.fonts.titleFonts};
+  line-height: 100%;
+  font-size: 34px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * RAY_RADIUS_PX}px;
+  margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * RAY_RADIUS_PX}px;
+  transform: rotate(${props => (-360 / 16) * (props.rayNum + 4)}deg);
+  animation-delay: ${props => props.rayNum * 1}s;
+  animation-fill-mode: backwards;
+  user-select: none;
 `
 
 const LandingPage = () => {
  
   return(
     <Page>
-      <SunImg src={sunPng} alt={"Sun"} />
+      <SunContainer>
+        <SunImg />
+        <RayWrapper>
+          <SunRay rayNum={1} > REACT.JS </SunRay>
+          <SunRay rayNum={2} > PYTHON </SunRay>
+          <SunRay rayNum={3} > NODE.JS </SunRay>
+          <SunRay rayNum={4} > HTML/CSS </SunRay>
+          <SunRay rayNum={5} > JAVA </SunRay>
+          <SunRay rayNum={6} > MONGODB </SunRay>
+          <SunRay rayNum={7} > POSTGRES </SunRay>
+          <SunRay rayNum={8} > ++C</SunRay>
+          <SunRay rayNum={9} > REACT.JS </SunRay>
+          <SunRay rayNum={10} > PYTHON </SunRay>
+          <SunRay rayNum={11} > NODE.JS </SunRay>
+          <SunRay rayNum={12} > HTML/CSS </SunRay>
+          <SunRay rayNum={13} > JAVA </SunRay>
+          <SunRay rayNum={14} > MONGODB </SunRay>
+          <SunRay rayNum={15} > POSTGRES </SunRay>
+          <SunRay rayNum={16} > ++C</SunRay>
+        </RayWrapper>
+      </SunContainer>
       <NameContainer>
         <Name>
           <Letter>
@@ -132,7 +252,8 @@ const LandingPage = () => {
             s
           </Letter>
           <span>
-            &nbsp;
+            <DisplayOnDesktop>&nbsp;</DisplayOnDesktop>
+            <DisplayOnCompact><br></br></DisplayOnCompact>
           </span>
           <Letter>
             G
@@ -148,7 +269,7 @@ const LandingPage = () => {
           </Letter>
         </Name>
         <Subname>
-          Full Stack Developer
+          Full Stack <DisplayOnCompact><br></br></DisplayOnCompact> Developer
         </Subname>
       </NameContainer>
     </Page>

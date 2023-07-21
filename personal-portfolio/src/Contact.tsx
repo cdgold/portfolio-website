@@ -107,14 +107,14 @@ const Contact = () => {
     <Section>
       <Content>
         <Title>
-        Get in touch
+        Get in touch!
         </Title>
         <OptionsGrid>
           <OptionTitle>
-              MEET!
+              MEET
           </OptionTitle>
           <OptionTitle>
-              E-MAIL!
+              E-MAIL
           </OptionTitle>
           <OptionText>
               Have a brief meeting with me over phone or Zoom.

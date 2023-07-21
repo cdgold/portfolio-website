@@ -14,6 +14,7 @@ import Footer from "./Footer"
 // coloring (add more)
 // onload
 // font-face-observer (https://stackoverflow.com/questions/66879446/react-how-to-check-if-a-specific-font-face-has-been-loaded)
+// icon
 
 const PageContainer = styled.div`
 position: relative;

@@ -39,7 +39,7 @@ export const defaultTheme: DefaultTheme = {
     headingFonts: "'Bungee Shade', sans-serif",
     subheadingFonts: "'Bungee Inline', sans-serif",
     titleFonts: "'Bungee', sans-serif",
-    bodyFonts: "'Cabin', sans-serif",
+    bodyFonts: "'Lexend', sans-serif",
     sizes: {
       bodySmall: "1rem",
       bodyMedium: "1.3rem",
