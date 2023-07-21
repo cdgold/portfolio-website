@@ -290,7 +290,7 @@ const ProjectContainer = styled.div`
   border-radius: 10px;
   margin-bottom: 1rem;  
   min-width: 10rem;
-  padding: 10px;
+  padding: 15px;
 `
 
 const LongProjectContainer = styled(ProjectContainer)`
