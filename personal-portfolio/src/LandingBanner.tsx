@@ -3,7 +3,10 @@ import styled, { keyframes } from "styled-components"
 import sunPng from "./assets/sun.png"
 
 const FULL_DESKTOP_CUTOFF = "1250px"
-const RAY_RADIUS_PX = 300
+const MOBILE_CUTOFF = "650px"
+const FULL_RAY_RADIUS_PX = 275
+const HALF_RAY_RADIUS_PX = 200
+const CLOSE_RAY_RADIUS_PX = 140
 
 const lift = keyframes`
   0% {
@@ -69,11 +72,18 @@ const DisplayOnDesktop = styled.span`
 
 const Page = styled.div`
   background-color: ${props => props.theme.palette.main.background};
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 43% 57%;
-  grid-template-rows: 40% 60%;
+  @media (min-width: ${MOBILE_CUTOFF}) {
+    grid-template-columns: 43% 57%;
+    grid-template-rows: 40% 60%;
+  }
+  @media (max-width: ${MOBILE_CUTOFF}) {
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 60% 40%;
+  }
 `
 
 const NameContainer = styled.div`
@@ -85,10 +95,19 @@ justify-self: end;
 
 const Name = styled.div`
   font-family: ${props => props.theme.fonts.headingFonts};
-  font-size: 75px;
+  @media (min-width: ${FULL_DESKTOP_CUTOFF}) {
+    font-size: 70px;
+  }
+  @media (min-width: ${MOBILE_CUTOFF}) and (max-width: ${FULL_DESKTOP_CUTOFF}) {
+    font-size: 60px;
+  }
+  @media (max-width: ${MOBILE_CUTOFF}) {
+    font-size: 45px;
+  }
+  
   line-height: 100%;
   margin-bottom: 10px;
-  text-shadow: -5px 4px 2px ${props => props.theme.palette.main.primary};
+  text-shadow: -5px 4px 0px rgb(255, 255, 0, .65);
   text-align: right;
   z-index: 10;
 `
@@ -96,7 +115,16 @@ const Name = styled.div`
 const Subname = styled.div`
   font-family: ${props => props.theme.fonts.titleFonts};
   line-height: 100%;
-  font-size: 40px;
+  @media (min-width: ${FULL_DESKTOP_CUTOFF}) {
+    font-size: 35px;
+  }
+  @media (min-width: ${MOBILE_CUTOFF}) and (max-width: ${FULL_DESKTOP_CUTOFF}) {
+    font-size: 28px;
+  }
+  @media (max-width: ${MOBILE_CUTOFF}) {
+    font-size: 22px;
+  }
+
   text-align: right;
   text-shadow: -5px 4px 0px ${props => props.theme.palette.main.primary};
   user-select: none;
@@ -152,8 +180,19 @@ position: absolute;
 top: 50%;
 left: 50%;
 translate: -50% -50%;
-height: 250px;
-width: 250px;
+@media (min-width: ${FULL_DESKTOP_CUTOFF}) {
+  height: 250px;
+  width: 250px;
+}
+@media (min-width: ${MOBILE_CUTOFF}) and (max-width: ${FULL_DESKTOP_CUTOFF}) {
+  height: 200px;
+  width: 200px;
+}
+@media (max-width: ${MOBILE_CUTOFF}) {
+  height: 160px;
+  width: 160px;
+}
+
 background-color: ${props => props.theme.palette.main.primary};
 border-radius: 50%;
 `
@@ -189,20 +228,34 @@ interface RayProps {
 const SunRay = styled.div<RayProps>`
 color: ${props => props.theme.palette.main.primary};
 opacity: 85%;
-letter-spacing: 15px;
 direction: rtl;
 width: 80px;
   font-family: ${props => props.theme.fonts.titleFonts};
   line-height: 100%;
-  font-size: 34px;
 
   position: absolute;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
 
-  margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * RAY_RADIUS_PX}px;
-  margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * RAY_RADIUS_PX}px;
+  @media (min-width: ${FULL_DESKTOP_CUTOFF}) {
+    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * FULL_RAY_RADIUS_PX}px;
+    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * FULL_RAY_RADIUS_PX}px;
+    font-size: 34px;
+    letter-spacing: 15px;
+  }
+  @media (min-width: ${MOBILE_CUTOFF}) and (max-width: ${FULL_DESKTOP_CUTOFF}) {
+    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * HALF_RAY_RADIUS_PX}px;
+    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * HALF_RAY_RADIUS_PX}px;
+    letter-spacing: 10px;
+    font-size: 28px;
+  }
+  @media (max-width: ${MOBILE_CUTOFF}) {
+    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * CLOSE_RAY_RADIUS_PX}px;
+    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * CLOSE_RAY_RADIUS_PX}px;
+    letter-spacing: 7px;
+    font-size: 22px;
+  }
   transform: rotate(${props => (-360 / 16) * (props.rayNum + 4)}deg);
   animation-delay: ${props => props.rayNum * 1}s;
   animation-fill-mode: backwards;

@@ -9,6 +9,11 @@ import PostgresSVG from "./assets/postgresql-icon.svg"
 import TypescriptSVG from "./assets/Typescript_logo.svg"
 import meStanding from "./assets/me_standing_cropped.jpg"
 
+// mobile view
+
+const DESKTOP_VIEW_CUTOFF = "975px"
+const MOBILE_VIEW_CUTOFF = "700px"
+
 const Section = styled.div`
   width: 100vw;
   min-height: 100vh;
@@ -19,7 +24,12 @@ const Section = styled.div`
 `
 
 const Content = styled.div`
-  width: ${props => props.theme.contentWidthPercent};
+  @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+    width: ${props => props.theme.contentWidthPercent};
+  }
+  @media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+    width: ${props => props.theme.mobileContentWidthPercent};
+  }
 `
 
 const Title = styled.div`
@@ -27,29 +37,69 @@ const Title = styled.div`
   font-family: ${props => props.theme.fonts.subheadingFonts};
   line-height: 1;
   letter-spacing: -1.5px;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-align: center;
 `
 
 const AboutGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  column-gap: 5%;
-  grid-template-rows: 20rem 1fr;
+  @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 5%;
+    grid-template-rows: 20rem 1fr;
+  }
+  @media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-template-columns: 48% 48%;
+    column-gap: 4%;
+    grid-template-rows: 20rem 1fr;
+  }
 `
 
 const ListContainer = styled.div`
   margin-top: 0px;
   margin-bottom: 1.5rem;
   text-align: center;
+  display: grid;
+  align-content: space-evenly;
   border: 0px solid black;
-background-color: ${props => props.theme.palette.secondary.primary};
-border-radius: 10px;
-margin-bottom: 1rem;  
-padding: 10px;
+  background-color: ${props => props.theme.palette.secondary.primary};
+  border-radius: 10px;
+  margin-bottom: 1rem;  
+  padding: 3px 3px;
+`
+/*
+  @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  @media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+*/
+
+const LongListContainer = styled(ListContainer)`
+  @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-column: 3;
+  }
+  @media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-column: 2;
+  }
+  grid-row: 1 / span 2;
 `
 
+const ShortListContainer = styled(ListContainer)`
+  @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  @media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+`
+  
 const ListHeader = styled.div`
   font-size: ${props => props.theme.fonts.sizes.titleSmall};
   font-family: ${props => props.theme.fonts.titleFonts};
@@ -59,8 +109,17 @@ const ListHeader = styled.div`
 `
 
 const ListSubeader = styled(ListHeader)`
-  font-size: ${props => props.theme.fonts.sizes.titleTiny};
+  @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+    font-size: ${props => props.theme.fonts.sizes.titleTiny};
+  }
+  @media (min-width: ${MOBILE_VIEW_CUTOFF}) and (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+    font-size: 30px;
+  }
+  @media (max-width: ${MOBILE_VIEW_CUTOFF}) {
+    font-size: 24px;
+  }
   font-family: ${props => props.theme.fonts.titleFonts};
+  margin-bottom: 1rem;
 `
 
 const List = styled.ul`
@@ -71,17 +130,27 @@ margin: 0;
 
 const ListElement = styled.li`
   font-family: ${props => props.theme.fonts.bodyFonts};
-  font-size: ${props => props.theme.fonts.sizes.bodyMedium};
+  font-size: 18px;
   display: grid;
   grid-template-columns: max-content max-content;
   column-gap: .5rem;
   margin-bottom: .25rem;
   justify-content: center;
   align-items: center;
+
+  @media (max-content) {
+
+  }
+`
+const TypescriptIcon = styled.img`
+  height: 30px;
 `
 
 const ListElementIcon = styled.span`
-font-size: ${props => props.theme.fonts.sizes.titleSmall};
+  @media (max-width: ${MOBILE_VIEW_CUTOFF}) {
+    display: none;
+  }
+  font-size: 40px;
   place-self: center;
   height: 90%;
 `
@@ -90,16 +159,38 @@ const BlurbText = styled.div`
   font-family: ${props => props.theme.fonts.bodyFonts};
   font-size: ${props => props.theme.fonts.sizes.bodyMedium};
   text-align: center;
-  grid-row: 2;
+  @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-row: 2;
+  }
+  @media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+    grid-row: 3;
+  }
   grid-column: 1 / span 2;
   padding: 10px;
   font-weight: 500;
 `
 
+const ImgContainer = styled.div`
+@media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
+  grid-column: 1;
+  grid-row: 1;
+}
+@media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+  grid-column: 1;
+  grid-row: 1;
+}
+  height: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+`
+
 const MeImg = styled.img`
 border-radius: 10%;
 margin-bottom: 1rem;  
-width: 90%;
+height: 85%;
+width: 95%;
+object-fit: cover;
 border: 0px solid black;
 `
 
@@ -113,10 +204,10 @@ const About = () => {
         About Me
         </Title>
         <AboutGrid>
-          <div style={{gridColumn: 1, gridRow: 1, height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <ImgContainer>
             <MeImg src={meStanding} alt={"Chris Gold standing"} />
-          </div>
-          <ListContainer style={{ gridColumn: 2, gridRow: 1 }}>
+          </ImgContainer>
+          <ShortListContainer>
             <ListSubeader>
               <Highlight tiltDegree={-1}> Frontend </Highlight>
             </ListSubeader>
@@ -146,8 +237,8 @@ const About = () => {
                 {"styled-components"}
               </ListElement>
             </List>
-          </ListContainer>
-          <ListContainer style={{ gridColumn: 3, gridRow: "1 / span 2" }}>
+          </ShortListContainer>
+          <LongListContainer>
             <ListSubeader>
               <Highlight tiltDegree={1}> Backend </Highlight>
             </ListSubeader>
@@ -184,9 +275,9 @@ const About = () => {
               </ListElement>
               <ListElement>
                 <ListElementIcon>
-                  <img style={{height: theme.fonts.sizes.titleTiny}} src={TypescriptSVG} />
+                  <TypescriptIcon src={TypescriptSVG} />
                 </ListElementIcon>
-                {" Typescript/Javascript"}
+                {" TS/JS"}
               </ListElement>
               <ListElement>
                 <ListElementIcon>
@@ -201,7 +292,7 @@ const About = () => {
                 {" C++"}
               </ListElement>
             </List>
-          </ListContainer>
+          </LongListContainer>
           <BlurbText>
             {`Hi! I'm Chris, a full stack developer living in D.C. 
           What sets me apart as a developer my attention to detail, complete dedication to every project I work on, 

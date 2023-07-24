@@ -10,6 +10,17 @@ interface IPalette {
   linkText?: string
 }
 
+interface fontSizes {
+  bodySmall: string,
+  bodyMedium: string,
+  bodyLarge: string,
+  titleTiny?: string,
+  subheading?: string,
+  titleSmall: string,
+  titleMedium: string,
+  titleLarge: string
+}
+
 
 
 declare module 'styled-components' {
@@ -41,18 +52,11 @@ declare module 'styled-components' {
       subheadingFonts: string,
       titleFonts: string,
       bodyFonts: string,
-      sizes: {
-        bodySmall: string,
-        bodyMedium: string,
-        bodyLarge: string,
-        titleTiny: string,
-        subheading: string,
-        titleSmall: string,
-        titleMedium: string,
-        titleLarge: string
-      }
+      sizes: fontSizes,
+      mobileSizes: fontSizes
     },
     contentWidthPercent: string;
+    mobileContentWidthPercent: string;
     footerHeight: string;
   }
 }

@@ -16,8 +16,7 @@ import NickHome from "./assets/NickCaptures/nick_home.png"
 import NickEdit from "./assets/NickCaptures/nick_edit.jpg"
 import NickResume from "./assets/NickCaptures/nick_resume.jpg"
 
-
-const TITLE_SIZE = "45px"
+const DESKTOP_VIEW_CUTOFF = "900px"
 
 const ZicProject : Project = {
   "title": "Zic",
@@ -80,7 +79,7 @@ const ProjectButton = styled.span`
   padding: 5px;
   line-height: 1;
   font-family: ${props => props.theme.fonts.titleFonts};
-  font-size: ${props => props.theme.fonts.sizes.bodyLarge};
+  font-size: 28px;
 
   transition: all .2s;
 
@@ -144,7 +143,12 @@ const Section = styled.div`
 
 
 const Content = styled.div`
+@media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
   width: ${props => props.theme.contentWidthPercent};
+}
+@media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
+  width: ${props => props.theme.mobileContentWidthPercent};
+}
   font-family: ${props => props.theme.fonts.bodyFonts};
   font-size: ${props => props.theme.fonts.sizes.bodyMedium};
   display: flex;
@@ -159,11 +163,15 @@ const Title = styled.div`
   font-family: ${props => props.theme.fonts.subheadingFonts};
   line-height: 1;
   letter-spacing: -1.5px;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+`
+
+const ProjectTextContainer = styled.div`
+  text-align: center;
 `
 
 const ProjectTitle = styled.div`
-font-size: ${TITLE_SIZE};
+font-size: 42px;
 font-family: ${props => props.theme.fonts.headingFonts};
 line-height: 1;
 letter-spacing: -1.5px;
@@ -172,7 +180,7 @@ margin-bottom: 1rem;
 
 const ProjectSubtitle = styled.div`
 color: black;
-font-size: ${props => props.theme.fonts.sizes.bodyLarge};
+font-size: 28px;
 font-family: ${props => props.theme.fonts.titleFonts};
 line-height: 1;
 letter-spacing: -1.5px;
@@ -180,8 +188,8 @@ margin-bottom: .25rem;
 `
 
 const ProjectBullets = styled.ul`
-list-style-type: none;
-margin-left: 0;
+  list-style-type: none;
+  margin-left: 0;
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
@@ -195,14 +203,14 @@ const ProjectBullet = styled.li`
 `
 
 const ProjectTech = styled.div`
-  font-size: ${props => props.theme.fonts.sizes.titleSmall};
+  font-size: 40px;
   font-family: ${props => props.theme.fonts.bodyFonts};
   display: flex;
+  flex-wrap: wrap;
   gap: .75rem;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  height: ${props => props.theme.fonts.sizes.titleSmall};
 `
 
 const Links = styled(ProjectSubtitle)`
@@ -224,7 +232,7 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
   const theme = useTheme()
 
   return(
-    <div style={{ textAlign: "center" }}>
+    <ProjectTextContainer>
       <ProjectTitle>
         <Highlight tiltDegree={props.titleTilt}> {project.title} </Highlight>
       </ProjectTitle>
@@ -242,7 +250,7 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
           <FontAwesomeIcon icon={faCss3Alt} color={theme.palette.icons.css} /> 
           : null}
         {project.tech.includes("styled-components") ?
-          <span style={{ fontSize: theme.fonts.sizes.bodyLarge }} role="img" aria-label="nails-paint">💅</span>
+          <span style={{ fontSize: "34px" }} role="img" aria-label="nails-paint">💅</span>
           : null}
         {project.tech.includes("node") ?
           <FontAwesomeIcon icon={faNodeJs} color={theme.palette.icons.node} /> 
@@ -251,7 +259,7 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
           <ExpressIcon /> 
           : null}
         {project.tech.includes("postgres") ?
-          <img style={{ height: "100%" }} src={PostgresSVG} alt={"postgres icon"} /> 
+          <img style={{ height: "34px" }} src={PostgresSVG} alt={"postgres icon"} /> 
           : null}
         {project.tech.includes("mongodb") ?
           <FontAwesomeIcon icon={faLeaf} color={theme.palette.icons.mongoDB} /> 
@@ -281,22 +289,28 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
           }         
         </ProjectBullets>
         : null }
-    </div>
+    </ProjectTextContainer>
   )
 }
 
 const ProjectContainer = styled.div`
   background-color: ${props => props.theme.palette.secondary.primary};
   border-radius: 10px;
-  margin-bottom: 1rem;  
-  min-width: 10rem;
+  margin-bottom: 1.25rem;  
   padding: 15px;
+  row-gap: 2px;
+  column-gap: 5%;
 `
 
 const LongProjectContainer = styled(ProjectContainer)`
 display: grid;
-grid-gap: 5%;
-grid-template-columns: 55% 40%;
+@media (min-width: ${DESKTOP_VIEW_CUTOFF}) { 
+  grid-template-columns: 55% 40%;
+  }
+  @media (max-width: ${DESKTOP_VIEW_CUTOFF}) { 
+    grid-template-columns: 100%;
+    grid-template-rows: min-content min-content;
+    }
 `
 
 const ShortProjectContainer = styled(ProjectContainer)`
@@ -308,8 +322,12 @@ const ShortProjectContainer = styled(ProjectContainer)`
 
 const FlippedProjectContainer = styled(ProjectContainer)`
 display: grid;
-grid-gap: 5%;
+@media (min-width: ${DESKTOP_VIEW_CUTOFF}) { 
 grid-template-columns: 40% 55%;
+}
+@media (max-width: ${DESKTOP_VIEW_CUTOFF}) { 
+  grid-template-columns: 100%;
+  }
 `
 
 interface ProjectProps {

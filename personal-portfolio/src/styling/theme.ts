@@ -42,16 +42,25 @@ export const defaultTheme: DefaultTheme = {
     bodyFonts: "'Lexend', sans-serif",
     sizes: {
       bodySmall: "1rem",
-      bodyMedium: "1.3rem",
-      bodyLarge: "1.8rem",
+      bodyMedium: "1.0rem",
+      bodyLarge: "1.2rem",
       subheading: "4rem",
       titleTiny: "2.3rem",
       titleSmall: "2.7rem",
       titleMedium: "3.0rem",
       titleLarge: "3.3rem"
+    },
+    mobileSizes: {
+      bodySmall: ".8rem",
+      bodyMedium: "1rem",
+      bodyLarge: "1.2rem",
+      titleSmall: "2.4rem",
+      titleMedium: "2.7rem",
+      titleLarge: "3.0rem"
     }
   },
   contentWidthPercent: "80%",
+  mobileContentWidthPercent: "92%",
   footerHeight: "3rem",
 }
 

@@ -5,12 +5,14 @@ import { faArrowUpRightFromSquare, faCopy } from "@fortawesome/free-solid-svg-ic
 
 const MEETING_LINK = "https://calendly.com/cdgold/30min"
 
+const MOBILE_VIEW_CUTOFF = "750px"
+
 const Section = styled.div`
   width: 100vw;
-  height: 50vh;
   display: flex;
   justify-content: center;
   background-color: ${props => props.theme.palette.secondary.background};
+  padding-bottom: 2rem;
 `
 
 const Title = styled.div`
@@ -59,7 +61,15 @@ const Content = styled.div`
 const OptionsGrid = styled.div`
 width: 100%;
 display: grid;
-grid-template-columns: 50% 50%;
+@media (min-width: ${MOBILE_VIEW_CUTOFF}) {
+  grid-template-columns: 47% 47%;
+  column-gap: 6%;
+}
+
+@media (max-width: ${MOBILE_VIEW_CUTOFF}) {
+  grid-template-columns: 100%;
+  row-gap: 1.5rem;
+}
 `
 
 const OptionCell = styled.div`
@@ -90,7 +100,7 @@ border-radius: 5px;
 padding: 5px;
 line-height: 1;
 font-family: ${props => props.theme.fonts.titleFonts};
-font-size: ${props => props.theme.fonts.sizes.bodyLarge};
+font-size: 28px;
 
 transition: all .2s;
 
@@ -99,6 +109,10 @@ transition: all .2s;
   transform: translate3d(2px, -2px, 0);
   box-shadow: -3px 3px 0px ${props => props.theme.palette.secondary.accent};
 }
+`
+
+const OptionContainer = styled.div`
+  display: grid;
 `
 
 const Contact = () => {
@@ -110,33 +124,37 @@ const Contact = () => {
         Get in touch!
         </Title>
         <OptionsGrid>
-          <OptionTitle>
+          <OptionContainer>
+            <OptionTitle>
               MEET
-          </OptionTitle>
-          <OptionTitle>
-              E-MAIL
-          </OptionTitle>
-          <OptionText>
+            </OptionTitle>
+            <OptionText>
               Have a brief meeting with me over phone or Zoom.
-          </OptionText>
-          <OptionText>
-            {"Send me an e-mail at "}
-            <HighlightContainer> 
-              <Highlight>cdgold9@gmail.com </Highlight></HighlightContainer>.
-          </OptionText>
-          <OptionCell>
-            <ContactButton onClick={ () => window.open(MEETING_LINK) }>
-          schedule <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </ContactButton>
-          </OptionCell>
-          <OptionCell>
-            <ContactButton onClick={() => {
-              void navigator.clipboard.writeText("cdgold9@gmail.com")
-            }
-            }>
+            </OptionText>
+            <OptionCell>
+              <ContactButton onClick={ () => window.open(MEETING_LINK) }>
+          Schedule <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              </ContactButton>
+            </OptionCell>
+          </OptionContainer>
+          <OptionContainer>
+            <OptionTitle>
+              E-MAIL
+            </OptionTitle>
+            <OptionText>
+              {"Send me an e-mail at "}
+              <HighlightContainer> 
+                <Highlight>cdgold9@gmail.com </Highlight></HighlightContainer>.
+            </OptionText>
+            <OptionCell>
+              <ContactButton onClick={() => {
+                void navigator.clipboard.writeText("cdgold9@gmail.com")
+              }
+              }>
           Copy to clipboard <FontAwesomeIcon icon={faCopy} />
-            </ContactButton>
-          </OptionCell>
+              </ContactButton>
+            </OptionCell>
+          </OptionContainer>
         </OptionsGrid>
       </Content>
     </Section>

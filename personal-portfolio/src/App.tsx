@@ -11,15 +11,14 @@ import Footer from "./Footer"
 // loading page
 // landing page buttons?
 // remove header pre-scroll
-// coloring (add more)
 // onload
 // font-face-observer (https://stackoverflow.com/questions/66879446/react-how-to-check-if-a-specific-font-face-has-been-loaded)
-// icon
 
 const PageContainer = styled.div`
 position: relative;
 margin-left: 0;
 overflow-x: hidden;
+overflow-y: hidden;
 min-height: 100vh;
 `
 
@@ -31,10 +30,6 @@ const Gradient = styled.div`
   width: 100vw;
   height: 10rem;
   background-image: linear-gradient(${props => props.theme.palette.main.background}, ${props => props.theme.palette.secondary.background});
-`
-
-const Content = styled.div`
-  width: ${props => props.theme.contentWidthPercent};
 `
 
 function App() {
