@@ -15,6 +15,7 @@ import ZicProfile from "./assets/ZicCaptures/profile_page.jpg"
 import NickHome from "./assets/NickCaptures/nick_home.png"
 import NickEdit from "./assets/NickCaptures/nick_edit.jpg"
 import NickResume from "./assets/NickCaptures/nick_resume.jpg"
+import AnimateOnShow from "./styling/reusable/AnimateOnShow"
 
 const DESKTOP_VIEW_CUTOFF = "900px"
 
@@ -234,7 +235,7 @@ const ProjectText = (props: ProjectTextProps): JSX.Element => {
   return(
     <ProjectTextContainer>
       <ProjectTitle>
-        <Highlight tiltDegree={props.titleTilt}> {project.title} </Highlight>
+        <Highlight $tiltdegree={props.titleTilt}> {project.title} </Highlight>
       </ProjectTitle>
       <ProjectSubtitle>
         {project.subtitle}
@@ -381,10 +382,16 @@ const Projects = () => {
         <Title>
         Projects
         </Title>
-        <ShowProject project={ZicProject} titleTilt={3}/>
-        <ShowProject project={NickGiotisProject} flip={true} titleTilt={-2} />
+        <AnimateOnShow>
+          <ShowProject project={ZicProject} titleTilt={3}/>
+        </AnimateOnShow>
+        <AnimateOnShow>
+          <ShowProject project={NickGiotisProject} flip={true} titleTilt={-2} />
+        </AnimateOnShow>
+        <AnimateOnShow>
         And, of course: <br></br>
-        <ShowProject project={thisSiteProject} short={true} titleTilt={2}  />
+          <ShowProject project={thisSiteProject} short={true} titleTilt={2}  />
+        </AnimateOnShow>
       </Content>
     </Section>
   )

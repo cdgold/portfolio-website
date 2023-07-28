@@ -2,7 +2,7 @@ import React, { ReactNode } from "react"
 import styled from "styled-components"
 
 interface HighlightContainerProps{
-  tiltDegree?: number;
+  $tiltdegree?: number;
 }
 
 const HighlightContainer = styled.span<HighlightContainerProps>`
@@ -18,7 +18,7 @@ const HighlightContainer = styled.span<HighlightContainerProps>`
     margin-right: -3px;
     position: absolute;
     background: ${props => props.theme.palette.secondary.secondary};
-    transform: rotate(${p => (p.tiltDegree) ? p.tiltDegree : 0}deg);
+    transform: rotate(${p => (p.$tiltdegree) ? p.$tiltdegree : 0}deg);
     top: -1px;
     left: -1px;
     border-radius: 20% 10% 10% 20%;
@@ -33,13 +33,13 @@ const HighlightSpan = styled.span`
 `
 
 interface HighlightProps{
-  tiltDegree?: number;
+  $tiltdegree?: number;
   children?: ReactNode;
 }
 
 const Highlight = (props: HighlightProps) => {
   return(
-    <HighlightContainer tiltDegree={props.tiltDegree} >
+    <HighlightContainer $tiltdegree={props.$tiltdegree} >
       <HighlightSpan>
         {props.children}
       </HighlightSpan>

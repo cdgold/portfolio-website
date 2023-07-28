@@ -8,6 +8,7 @@ import { Highlight } from "./styling/reusable/Highlight"
 import PostgresSVG from "./assets/postgresql-icon.svg"
 import TypescriptSVG from "./assets/Typescript_logo.svg"
 import meStanding from "./assets/me_standing_cropped.jpg"
+import AnimateOnShow from "./styling/reusable/AnimateOnShow"
 
 // mobile view
 
@@ -158,6 +159,8 @@ const ListElementIcon = styled.span`
 const BlurbText = styled.div`
   font-family: ${props => props.theme.fonts.bodyFonts};
   font-size: ${props => props.theme.fonts.sizes.bodyMedium};
+  border: 2px solid ${props => props.theme.palette.secondary.primary};
+  border-radius: 10px;
   text-align: center;
   @media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
     grid-row: 2;
@@ -205,11 +208,13 @@ const About = () => {
         </Title>
         <AboutGrid>
           <ImgContainer>
-            <MeImg src={meStanding} alt={"Chris Gold standing"} />
+            <AnimateOnShow>
+              <MeImg src={meStanding} alt={"Chris Gold standing"} />
+            </AnimateOnShow>
           </ImgContainer>
           <ShortListContainer>
             <ListSubeader>
-              <Highlight tiltDegree={-1}> Frontend </Highlight>
+              <Highlight $tiltdegree={-1}> Frontend </Highlight>
             </ListSubeader>
             <List>
               <ListElement>
@@ -240,7 +245,7 @@ const About = () => {
           </ShortListContainer>
           <LongListContainer>
             <ListSubeader>
-              <Highlight tiltDegree={1}> Backend </Highlight>
+              <Highlight $tiltdegree={1}> Backend </Highlight>
             </ListSubeader>
             <List>
               <ListElement>

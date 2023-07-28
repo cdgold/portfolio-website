@@ -1,6 +1,8 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 import sunPng from "./assets/sun.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
 const FULL_DESKTOP_CUTOFF = "1250px"
 const MOBILE_CUTOFF = "650px"
@@ -222,7 +224,7 @@ const RayWrapper = styled.div`
 //
 
 interface RayProps {
-  rayNum: number;
+  $raynum: number;
 }
 
 const SunRay = styled.div<RayProps>`
@@ -239,27 +241,46 @@ width: 80px;
   translate: -50% -50%;
 
   @media (min-width: ${FULL_DESKTOP_CUTOFF}) {
-    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * FULL_RAY_RADIUS_PX}px;
-    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * FULL_RAY_RADIUS_PX}px;
+    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.$raynum) * FULL_RAY_RADIUS_PX}px;
+    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.$raynum) * FULL_RAY_RADIUS_PX}px;
     font-size: 34px;
     letter-spacing: 15px;
   }
   @media (min-width: ${MOBILE_CUTOFF}) and (max-width: ${FULL_DESKTOP_CUTOFF}) {
-    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * HALF_RAY_RADIUS_PX}px;
-    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * HALF_RAY_RADIUS_PX}px;
+    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.$raynum) * HALF_RAY_RADIUS_PX}px;
+    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.$raynum) * HALF_RAY_RADIUS_PX}px;
     letter-spacing: 10px;
     font-size: 28px;
   }
   @media (max-width: ${MOBILE_CUTOFF}) {
-    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.rayNum) * CLOSE_RAY_RADIUS_PX}px;
-    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.rayNum) * CLOSE_RAY_RADIUS_PX}px;
+    margin-left: ${props => Math.sin(((Math.PI) / 8) * props.$raynum) * CLOSE_RAY_RADIUS_PX}px;
+    margin-top: ${props => Math.cos(((Math.PI) / 8) * props.$raynum) * CLOSE_RAY_RADIUS_PX}px;
     letter-spacing: 7px;
     font-size: 22px;
   }
-  transform: rotate(${props => (-360 / 16) * (props.rayNum + 4)}deg);
-  animation-delay: ${props => props.rayNum * 1}s;
+  transform: rotate(${props => (-360 / 16) * (props.$raynum + 4)}deg);
+  animation-delay: ${props => props.$raynum * 1}s;
   animation-fill-mode: backwards;
   user-select: none;
+`
+
+const ButtonRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  margin-top: .75rem;
+  font-size: 32px;
+`
+
+const ButtonLink = styled.a`
+color: ${props => props.theme.palette.common.black};
+transition: all .15s linear;  
+
+&:hover {
+  transform: translate3d(5px, -5px, 0);
+  color: yellow;
+  cursor: pointer;
+}
 `
 
 const LandingPage = () => {
@@ -269,22 +290,22 @@ const LandingPage = () => {
       <SunContainer>
         <SunImg />
         <RayWrapper>
-          <SunRay rayNum={1} > REACT.JS </SunRay>
-          <SunRay rayNum={2} > PYTHON </SunRay>
-          <SunRay rayNum={3} > NODE.JS </SunRay>
-          <SunRay rayNum={4} > HTML/CSS </SunRay>
-          <SunRay rayNum={5} > JAVA </SunRay>
-          <SunRay rayNum={6} > MONGODB </SunRay>
-          <SunRay rayNum={7} > POSTGRES </SunRay>
-          <SunRay rayNum={8} > ++C</SunRay>
-          <SunRay rayNum={9} > REACT.JS </SunRay>
-          <SunRay rayNum={10} > PYTHON </SunRay>
-          <SunRay rayNum={11} > NODE.JS </SunRay>
-          <SunRay rayNum={12} > HTML/CSS </SunRay>
-          <SunRay rayNum={13} > JAVA </SunRay>
-          <SunRay rayNum={14} > MONGODB </SunRay>
-          <SunRay rayNum={15} > POSTGRES </SunRay>
-          <SunRay rayNum={16} > ++C</SunRay>
+          <SunRay $raynum={1} > REACT.JS </SunRay>
+          <SunRay $raynum={2} > PYTHON </SunRay>
+          <SunRay $raynum={3} > NODE.JS </SunRay>
+          <SunRay $raynum={4} > HTML/CSS </SunRay>
+          <SunRay $raynum={5} > JAVA </SunRay>
+          <SunRay $raynum={6} > MONGODB </SunRay>
+          <SunRay $raynum={7} > POSTGRES </SunRay>
+          <SunRay $raynum={8} > ++C</SunRay>
+          <SunRay $raynum={9} > REACT.JS </SunRay>
+          <SunRay $raynum={10} > PYTHON </SunRay>
+          <SunRay $raynum={11} > NODE.JS </SunRay>
+          <SunRay $raynum={12} > HTML/CSS </SunRay>
+          <SunRay $raynum={13} > JAVA </SunRay>
+          <SunRay $raynum={14} > MONGODB </SunRay>
+          <SunRay $raynum={15} > POSTGRES </SunRay>
+          <SunRay $raynum={16} > ++C</SunRay>
         </RayWrapper>
       </SunContainer>
       <NameContainer>
@@ -324,6 +345,14 @@ const LandingPage = () => {
         <Subname>
           Full Stack <DisplayOnCompact><br></br></DisplayOnCompact> Developer
         </Subname>
+        <ButtonRow>
+          <ButtonLink href="https://github.com/cdgold">
+            <FontAwesomeIcon icon={faGithub} />
+          </ButtonLink>
+          <ButtonLink href="https://www.linkedin.com/in/chris-gold-59399122a/">
+            <FontAwesomeIcon icon={faLinkedin} />
+          </ButtonLink>
+        </ButtonRow>
       </NameContainer>
     </Page>
   )
