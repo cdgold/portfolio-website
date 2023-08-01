@@ -53,9 +53,6 @@ const Footer = () => {
     <FooterDiv>
       <FooterContent>
         Copyright © 2023. All rights reserved.
-        <GithubIcon href="https://github.com/cdgold" >
-          <FontAwesomeIcon icon={faGithub} />
-        </GithubIcon>
       </FooterContent>
     </FooterDiv>
   )

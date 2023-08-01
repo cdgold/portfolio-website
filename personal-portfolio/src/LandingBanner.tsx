@@ -269,7 +269,12 @@ const ButtonRow = styled.div`
   justify-content: flex-end;
   gap: .5rem;
   margin-top: .75rem;
-  font-size: 32px;
+  @media (min-width: ${MOBILE_CUTOFF}) {
+    font-size: 32px;
+  }
+  @media (max-width: ${MOBILE_CUTOFF}) {
+    font-size: 25px;
+  }
 `
 
 const ButtonLink = styled.a`

@@ -129,7 +129,7 @@ const Contact = () => {
               MEET
             </OptionTitle>
             <OptionText>
-              Have a brief meeting with me over phone or Zoom.
+              Have a brief meeting with me over phone or Zoom
             </OptionText>
             <OptionCell>
               <ContactButton onClick={ () => window.open(MEETING_LINK) }>
@@ -144,7 +144,7 @@ const Contact = () => {
             <OptionText>
               {"Send me an e-mail at "}
               <HighlightContainer> 
-                <Highlight>cdgold9@gmail.com </Highlight></HighlightContainer>.
+                <Highlight>cdgold9@gmail.com </Highlight></HighlightContainer>
             </OptionText>
             <OptionCell>
               <ContactButton onClick={() => {
