@@ -9,6 +9,8 @@ const ContainerDiv = styled.div`
   @media(prefers-reduced-motion: no-preference) {
     transition: all 1.1s;
   }
+  height: 100%;
+  width: 100%;
 `
 
 const styleUnseen:React.CSSProperties = {

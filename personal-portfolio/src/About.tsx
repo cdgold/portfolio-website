@@ -22,6 +22,7 @@ const Section = styled.div`
   background-color: ${props => props.theme.palette.secondary.background};
   display: flex;
   justify-content: center;
+  align-items: center;
 `
 
 const Content = styled.div`
@@ -49,6 +50,7 @@ const AboutGrid = styled.div`
     grid-template-columns: 30% 30% 30%;
     column-gap: 5%;
     grid-template-rows: 20rem 1fr;
+    row-gap: 1rem;
   }
   @media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
     grid-template-columns: 48% 48%;
@@ -174,14 +176,8 @@ const BlurbText = styled.div`
 `
 
 const ImgContainer = styled.div`
-@media (min-width: ${DESKTOP_VIEW_CUTOFF}) {
-  grid-column: 1;
+ grid-column: 1;
   grid-row: 1;
-}
-@media (max-width: ${DESKTOP_VIEW_CUTOFF}) {
-  grid-column: 1;
-  grid-row: 1;
-}
   height: 100%;
   display: flex; 
   justify-content: center;
@@ -189,8 +185,7 @@ const ImgContainer = styled.div`
 `
 
 const MeImg = styled.img`
-border-radius: 10%;
-margin-bottom: 1rem;  
+border-radius: 10%; 
 height: 85%;
 width: 95%;
 object-fit: cover;
@@ -208,7 +203,7 @@ const About = () => {
         </Title>
         <AboutGrid>
           <ImgContainer>
-            <AnimateOnShow>
+            <AnimateOnShow >
               <MeImg src={meStanding} alt={"Chris Gold standing"} />
             </AnimateOnShow>
           </ImgContainer>

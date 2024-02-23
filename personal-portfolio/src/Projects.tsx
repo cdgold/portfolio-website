@@ -316,7 +316,6 @@ display: grid;
 
 const ShortProjectContainer = styled(ProjectContainer)`
   display: inline-block;
-  width: min-content(15ch);
   justify-self: center;
   align-self: center;
 `
@@ -388,10 +387,12 @@ const Projects = () => {
         <AnimateOnShow>
           <ShowProject project={NickGiotisProject} flip={true} titleTilt={-2} />
         </AnimateOnShow>
-        <AnimateOnShow>
+        <div>
+          <AnimateOnShow>
         And, of course: <br></br>
           <ShowProject project={thisSiteProject} short={true} titleTilt={2}  />
         </AnimateOnShow>
+        </div>
       </Content>
     </Section>
   )

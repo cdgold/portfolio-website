@@ -217,7 +217,7 @@ const Header = (props: HeaderProps) => {
       <NavButton onClick={() => scrollToAbout() } >
         About
       </NavButton>
-      <NavButton onClick={() => {() => scrollToProjects() } } > 
+      <NavButton onClick={() => scrollToProjects() } > 
         Projects
       </NavButton>
       <NavButton onClick={() => scrollToContact() }>
